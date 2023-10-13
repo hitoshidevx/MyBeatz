@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>MyBeatz</title>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">EpicTask</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="active"><a href="/filme">pendentes</a></li>
+                <li><a href="#">concluídos</a></li>
+                <li><a href="#">usuários</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <h3>Cadastrar Beat</h3>
+
+        <div class="row">
+            <form action="/beat" method="post" class="col s12" th:object="${beat}">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input 
+                            th:field="*{beatTitle}" 
+                            type="text"
+                            th:classappend="${#fields.hasErrors('beatTitle')} ? invalid"
+                        >
+                        <label for="beatTitle">Título</label>
+                        <span class="helper-text red-text" th:errors="*{beatTitle}"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea 
+                            th:field="*{beatDescription}" 
+                            class="materialize-textarea"
+                            th:classappend="${#fields.hasErrors('beatDescription')} ? invalid"
+                        ></textarea>
+                        <label for="beatDescription">Descrição</label>
+                        <span class="helper-text red-text" th:errors="*{beatDescription}"></span>
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <p class="range-field">
+                            <label for="beatGenre">Genero</label>
+                            <input th:field="*{beatGenre}" type="range" min="1" max="10" />
+                            <span class="helper-text red-text" th:errors="*{beatGenre}"></span>
+                          </p>
+                    </div>
+                </div>
+                <div>
+                    <a href="/beat" class="btn grey">cancelar</a>
+                    <button class="btn">salvar</button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+</body>
+
+</html>
